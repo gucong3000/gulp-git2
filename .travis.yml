@@ -1,0 +1,16 @@
+dist: trusty
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - libstdc++-4.9-dev
+sudo: false
+language: node_js
+
+node_js:
+  - stable
+  - "--lts"
+
+after_script:
+  - npx codecov

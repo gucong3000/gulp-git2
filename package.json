@@ -1,0 +1,56 @@
+{
+  "name": "gulp-git2",
+  "nyc": {
+    "reporter": [
+      "lcov",
+      "text-summary"
+    ],
+    "cache": true
+  },
+  "version": "0.1.0",
+  "description": "NodeGit plugin for gulp",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "pretest": "eslint lib test",
+    "test": "nyc mocha --no-timeouts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gucong3000/gulp-git2.git"
+  },
+  "keywords": [
+    "gulp",
+    "gulp-plugin",
+    "git",
+    "nodegit",
+    "vinyl",
+    "stream"
+  ],
+  "author": "gucong",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gucong3000/gulp-git2/issues"
+  },
+  "homepage": "https://github.com/gucong3000/gulp-git2#readme",
+  "optionalDependencies": {
+    "nodegit": "^0.22.2"
+  },
+  "dependencies": {
+    "is-binary-path": "^2.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "eclint": "^2.8.0",
+    "eslint": "^5.1.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "mocha": "^5.2.0",
+    "nyc": "^12.0.2"
+  }
+}
