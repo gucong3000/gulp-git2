@@ -1,7 +1,7 @@
 "use strict";
 const gitStream = require("..");
 const expect = require("chai").expect;
-const fs = require("fs");
+const fs = require("fs-extra");
 const File = require("../lib/file");
 const spawnAsync = require("./spawn-async");
 
