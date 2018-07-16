@@ -15,7 +15,7 @@
   },
   "scripts": {
     "pretest": "eslint lib test",
-    "test": "nyc mocha --no-timeouts"
+    "test": "nyc mocha --no-timeouts --recursive"
   },
   "repository": {
     "type": "git",
