@@ -1,7 +1,7 @@
 "use strict";
 const path = require("path");
-const gitStream = require("..");
-const fixtures = path.join.bind(path, __dirname, "fixtures");
+const gitStream = require("../..");
+const fixtures = path.join.bind(path, __dirname, "..", "..fixtures");
 const expect = require("chai").expect;
 const fs = require("fs-extra");
 

@@ -1,10 +1,10 @@
 "use strict";
-const gitStream = require("..");
-const spawnAsync = require("./spawn-async");
-const File = require("../lib/file");
+const gitStream = require("../..");
+const spawnAsync = require("../spawn-async");
+const File = require("../../lib/file");
 const fs = require("fs-extra");
 const path = require("path");
-const fixtures = path.join.bind(path, __dirname, "fixtures");
+const fixtures = path.join.bind(path, __dirname, "..", "fixtures");
 const expect = require("chai").expect;
 
 describe("updateIndex", () => {
