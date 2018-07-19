@@ -16,7 +16,7 @@ describe("file", () => {
 	});
 	it("hash-object", async () => {
 		const file = new File({
-			cwd: git.gitWorkTree,
+			cwd: git.options.gitWorkTree,
 			relative: "README.md",
 		});
 		file.contents = await fs.readFile(file.path);
@@ -48,7 +48,7 @@ describe("file", () => {
 			blob = blob.trim();
 			const file = new File({
 				blob,
-				cwd: git.gitWorkTree,
+				cwd: git.options.gitWorkTree,
 				relative: "README.md",
 			});
 			const contents = await git.catFile(file);
@@ -64,7 +64,7 @@ describe("file", () => {
 			};
 			const stream = git.catFile();
 			stream.end(new File({
-				cwd: git.gitWorkTree,
+				cwd: git.options.gitWorkTree,
 				contents: null,
 				stat: fakeStat,
 				relative: "test",
@@ -167,7 +167,7 @@ describe("file", () => {
 
 		it("blame test/stream.js", async () => {
 			const file = new File({
-				cwd: git.gitWorkTree,
+				cwd: git.options.gitWorkTree,
 				relative: "test/stream.js",
 			});
 			file.contents = await fs.readFile(file.path);
@@ -180,7 +180,7 @@ describe("file", () => {
 
 		it("blame README.md", async () => {
 			const file = new File({
-				cwd: git.gitWorkTree,
+				cwd: git.options.gitWorkTree,
 				relative: "README.md",
 			});
 			const blame = await git.blame(file);

@@ -19,6 +19,17 @@ describe("updateIndex", () => {
 			gitDir: ".gitMock",
 		});
 		await git.init();
+		const stream = git.updateIndex();
+		stream.end(new File({
+			cwd: git.options.gitWorkTree,
+			contents: Buffer.from("in-head"),
+			relative: "test/fixtures/in-head.txt",
+		}));
+		await stream;
+		await git.commit({
+			verify: false,
+			message: "init for update-index test case",
+		});
 	});
 
 	after(() => {
@@ -28,7 +39,7 @@ describe("updateIndex", () => {
 	it("add a new file", async () => {
 		const stream = git.updateIndex();
 		stream.end(new File({
-			cwd: git.gitWorkTree,
+			cwd: git.options.gitWorkTree,
 			contents: Buffer.from("staged"),
 			relative: "test/fixtures/staged.txt",
 		}));
@@ -38,13 +49,13 @@ describe("updateIndex", () => {
 			encoding: "utf8",
 			cwd,
 		});
-		expect(status).to.match(/\s+test\/fixtures\/staged.txt$/m);
+		expect(status).to.match(/1 A\w N... \d+ \d+ \d+ \w+ \w+ test\/fixtures\/staged\.txt$/m);
 	});
 
-	it.skip("update a file", async () => {
+	it("update a file", async () => {
 		const stream = git.updateIndex();
 		stream.end(new File({
-			cwd: git.gitWorkTree,
+			cwd: git.options.gitWorkTree,
 			contents: Buffer.from("updated"),
 			relative: "test/fixtures/in-head.txt",
 		}));
@@ -54,13 +65,13 @@ describe("updateIndex", () => {
 			encoding: "utf8",
 			cwd,
 		});
-		expect(status).to.match(/^1 MM N... \d+ \d+ \d+ \w+ \w+\s+test\/fixtures\/in-head.txt$/m);
+		expect(status).to.match(/^1 M\w N... \d+ \d+ \d+ \w+ \w+ test\/fixtures\/in-head\.txt$/m);
 	});
 
 	it("remove a file", async () => {
 		const stream = git.updateIndex();
 		stream.end(new File({
-			cwd: git.gitWorkTree,
+			cwd: git.options.gitWorkTree,
 			contents: null,
 			relative: "test/fixtures/staged.txt",
 		}));
@@ -70,6 +81,6 @@ describe("updateIndex", () => {
 			encoding: "utf8",
 			cwd,
 		});
-		expect(status).not.match(/\s+test\/fixtures\/staged.txt$/m);
+		expect(status).not.match(/\s+test\/fixtures\/staged\.txt$/m);
 	});
 });
